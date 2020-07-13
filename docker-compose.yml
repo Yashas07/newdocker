@@ -1,0 +1,25 @@
+compose-newmysql:
+                image: yashasgc/test-newmysql
+                volumes: 
+                    - data_volume:/var/lib/mysql 
+                ports: 
+                    - "6607:3306"
+    
+compose-newnodejs:
+                image: yashasgc/test-newnodejs
+                ports: 
+                    - "3700:4000"
+                links:      
+                    - compose-newmysql
+                environment: 
+                        - MYSQL_USER=root 
+                        - MYSQL_PASSWORD=password 
+                        - MYSQL_DATABASE=newtest
+                        - MYSQL_HOST=172.17.0.3
+                        - DOCKER_HOST_PORT=3700
+
+
+                       
+                           
+            
+       
